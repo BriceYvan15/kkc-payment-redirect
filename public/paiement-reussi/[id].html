@@ -1,0 +1,27 @@
+<!-- public/paiement-echoue/[id].html -->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paiement échoué</title>
+    <meta http-equiv="refresh" content="0;url=myapp://paiement-echoue/{{id}}" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: sans-serif;
+        background-color: #f6f6f6;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>❌ Paiement échoué</h2>
+    <p>Nous n'avons pas pu confirmer votre paiement.</p>
+    <p><a href="myapp://paiement-echoue/{{id}}">Retourner à l'application</a></p>
+  </body>
+</html>
