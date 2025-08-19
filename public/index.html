@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKC Payment Redirect</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 KKC Payment Redirect</h1>
+        <p>Service de redirection pour les paiements Wave</p>
+        
+        <div class="info">
+            <h3>📱 Pages disponibles :</h3>
+            <p><strong>Succès :</strong> /paiement-reussi/{id}</p>
+            <p><strong>Échec :</strong> /paiement-echoue/{id}</p>
+        </div>
+        
+        <div class="info">
+            <h3>🔗 Deep Links :</h3>
+            <p><strong>Succès :</strong> myapp://paiement-reussi/{id}</p>
+            <p><strong>Échec :</strong> myapp://paiement-echoue/{id}</p>
+        </div>
+        
+        <p><em>Cette page est hébergée sur GitHub Pages</em></p>
+    </div>
+</body>
+</html>

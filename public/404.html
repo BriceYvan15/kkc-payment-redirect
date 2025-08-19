@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection - KKC</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Redirection en cours...</h1>
+        <div class="spinner"></div>
+        <p>Détection automatique de la page...</p>
+    </div>
+
+    <script>
+        // Fonction pour rediriger vers la bonne page
+        function redirectToCorrectPage() {
+            const path = window.location.pathname;
+            
+            // Détecter le type de paiement
+            if (path.includes('/paiement-reussi/')) {
+                const id = path.split('/paiement-reussi/')[1];
+                if (id) {
+                    // Rediriger vers la page de succès
+                    window.location.href = `/paiement-reussi/[id].html?id=${id}`;
+                    return;
+                }
+            }
+            
+            if (path.includes('/paiement-echoue/')) {
+                const id = path.split('/paiement-echoue/')[1];
+                if (id) {
+                    // Rediriger vers la page d'échec
+                    window.location.href = `/paiement-echoue/[id].html?id=${id}`;
+                    return;
+                }
+            }
+            
+            // Si aucune correspondance, rediriger vers l'accueil
+            window.location.href = '/';
+        }
+        
+        // Attendre un peu puis rediriger
+        setTimeout(redirectToCorrectPage, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+/paiement-reussi/:id /paiement-reussi/[id].html
+/paiement-echoue/:id /paiement-echoue/[id].html
+/paiement-reussi/:id/ /paiement-reussi/[id].html
+/paiement-echoue/:id/ /paiement-echoue/[id].html
