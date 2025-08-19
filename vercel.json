@@ -18,7 +18,6 @@
       "dest": "/paiement-echoue/[id].html"
     }
   ],
-  "functions": {},
   "headers": [
     {
       "source": "/(.*)",
