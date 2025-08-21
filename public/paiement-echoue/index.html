@@ -206,13 +206,31 @@
     <script>
       // Récupérer l'ID de réservation depuis l'URL
       function getBookingIdFromUrl() {
-        // L'URL est de la forme: /paiement-echoue/ABC123
+        // Essayer d'abord depuis l'URL pathname
         const pathParts = window.location.pathname.split('/');
-        const id = pathParts[pathParts.length - 1];
+        let id = pathParts[pathParts.length - 1];
+        
+        // Si l'ID est vide ou invalide, essayer depuis les paramètres
+        if (!id || id === 'index.html' || id === 'paiement-echoue') {
+          const urlParams = new URLSearchParams(window.location.search);
+          id = urlParams.get('id');
+        }
+        
         console.log('🔍 URL pathname:', window.location.pathname);
         console.log('🔍 Path parts:', pathParts);
         console.log('🔍 ID extrait:', id);
-        return id;
+        
+        // Si toujours pas d'ID, essayer de l'extraire depuis l'URL complète
+        if (!id || id === 'index.html' || id === 'paiement-echoue') {
+          const fullUrl = window.location.href;
+          const match = fullUrl.match(/\/paiement-echoue\/([^\/\?]+)/);
+          if (match) {
+            id = match[1];
+            console.log('🔍 ID extrait depuis regex:', id);
+          }
+        }
+        
+        return id || 'ID non trouvé';
       }
       
       // Formater la date actuelle
