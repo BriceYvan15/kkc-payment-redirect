@@ -1,6 +1,6 @@
-/paiement-reussi/:id /paiement-reussi/[id].html
-/paiement-echoue/:id /paiement-echoue/[id].html
-/paiement-reussi/:id/ /paiement-reussi/[id].html
-/paiement-echoue/:id/ /paiement-echoue/[id].html
-/payment-success /paiement-reussi/[id].html
-/payment-failed /paiement-echoue/[id].html
+/paiement-reussi/:id /paiement-reussi/index.html
+/paiement-echoue/:id /paiement-echoue/index.html
+/paiement-reussi/:id/ /paiement-reussi/index.html
+/paiement-echoue/:id/ /paiement-echoue/index.html
+/payment-success /paiement-reussi/index.html
+/payment-failed /paiement-echoue/index.html
