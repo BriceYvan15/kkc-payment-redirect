@@ -133,7 +133,7 @@
         <p>secondes</p>
       </div>
       
-      <a href="myapp://paiement-echoue/{{id}}" class="app-button">
+      <a href="myapp://payment-success?status=failed&id={{id}}" class="app-button">
         📱 Retourner à l'application
       </a>
       
@@ -154,7 +154,7 @@
         if (countdown <= 0) {
           clearInterval(timer);
           // Tentative de redirection vers l'app
-          window.location.href = `myapp://paiement-echoue/{{id}}`;
+          window.location.href = `myapp://payment-success?status=failed&id={{id}}`;
         }
       }, 1000);
     </script>

@@ -136,7 +136,7 @@
         <p>secondes</p>
       </div>
       
-      <a href="myapp://paiement-reussi/{{id}}" class="app-button">
+      <a href="myapp://payment-success?status=success&id={{id}}" class="app-button">
         📱 Ouvrir l'application maintenant
       </a>
       
@@ -157,7 +157,7 @@
         if (countdown <= 0) {
           clearInterval(timer);
           // Tentative de redirection vers l'app
-          window.location.href = `myapp://paiement-reussi/{{id}}`;
+          window.location.href = `myapp://payment-success?status=success&id={{id}}`;
         }
       }, 1000);
       
