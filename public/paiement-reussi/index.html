@@ -254,14 +254,21 @@
         const bookingId = getBookingIdFromUrl();
         const currentDate = getCurrentDate();
         
-        document.getElementById('bookingId').textContent = bookingId;
+        // Nettoyer l'ID - enlever .html et autres caractères invalides
+        const cleanId = bookingId.replace(/\.html$/, '').replace(/[^a-zA-Z0-9\-]/g, '');
+        
+        document.getElementById('bookingId').textContent = cleanId;
         document.getElementById('bookingDate').textContent = currentDate;
         
-        // Mettre à jour le lien du bouton
+        // Mettre à jour le lien du bouton avec l'ID nettoyé
         const appButton = document.getElementById('appButton');
-        appButton.href = `myapp://payment-success?status=success&id=${bookingId}`;
+        appButton.href = `myapp://payment-success?status=success&id=${cleanId}`;
         
-        console.log('📋 Informations de réservation mises à jour:', { bookingId, currentDate });
+        console.log('📋 Informations de réservation mises à jour:', { 
+          originalId: bookingId, 
+          cleanId: cleanId, 
+          currentDate 
+        });
       }
       
       // Compte à rebours
