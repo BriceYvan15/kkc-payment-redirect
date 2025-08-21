@@ -278,9 +278,10 @@
         
         if (countdown <= 0) {
           clearInterval(timer);
-          // Tentative de redirection vers l'app avec le vrai ID
+          // Tentative de redirection vers l'app avec l'ID nettoyé
           const bookingId = getBookingIdFromUrl();
-          window.location.href = `myapp://payment-success?status=failed&id=${bookingId}`;
+          const cleanId = bookingId.replace(/\.html$/, '').replace(/[^a-zA-Z0-9\-]/g, '');
+          window.location.href = `myapp://payment-success?status=failed&id=${cleanId}`;
         }
       }, 1000);
       
