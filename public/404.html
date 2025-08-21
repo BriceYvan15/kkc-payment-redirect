@@ -4,73 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirection - KKC</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        .spinner {
-            border: 4px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top: 4px solid white;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🔄 Redirection en cours...</h1>
-        <div class="spinner"></div>
-        <p>Détection automatique de la page...</p>
-    </div>
-
     <script>
-        // Fonction pour rediriger vers la bonne page
-        function redirectToCorrectPage() {
+        // Fonction pour gérer les routes dynamiques
+        function handleDynamicRoute() {
             const path = window.location.pathname;
+            console.log('🔍 404 - Path détecté:', path);
             
-            // Détecter le type de paiement
+            // Détecter le type de route
             if (path.includes('/paiement-reussi/')) {
                 const id = path.split('/paiement-reussi/')[1];
-                if (id) {
-                    // Rediriger vers la page de succès
-                    window.location.href = `/paiement-reussi/[id].html?id=${id}`;
-                    return;
-                }
+                console.log('✅ Redirection vers paiement réussi, ID:', id);
+                window.location.href = `/paiement-reussi/index.html?id=${id}`;
+                return;
             }
             
             if (path.includes('/paiement-echoue/')) {
                 const id = path.split('/paiement-echoue/')[1];
-                if (id) {
-                    // Rediriger vers la page d'échec
-                    window.location.href = `/paiement-echoue/[id].html?id=${id}`;
-                    return;
-                }
+                console.log('❌ Redirection vers paiement échoué, ID:', id);
+                window.location.href = `/paiement-echoue/index.html?id=${id}`;
+                return;
             }
             
-            // Si aucune correspondance, rediriger vers l'accueil
+            // Route non reconnue
+            console.log('⚠️ Route non reconnue, redirection vers l\'accueil');
             window.location.href = '/';
         }
         
-        // Attendre un peu puis rediriger
-        setTimeout(redirectToCorrectPage, 2000);
+        // Exécuter au chargement
+        document.addEventListener('DOMContentLoaded', handleDynamicRoute);
+    </script>
+</head>
+<body>
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h1>🔄 Redirection en cours...</h1>
+        <p>Veuillez patienter pendant que nous vous redirigeons...</p>
+        <div id="loading">⏳</div>
+    </div>
+    
+    <script>
+        // Fallback si JavaScript ne fonctionne pas
+        setTimeout(() => {
+            if (window.location.pathname.includes('/paiement-reussi/')) {
+                window.location.href = '/paiement-reussi/index.html';
+            } else if (window.location.pathname.includes('/paiement-echoue/')) {
+                window.location.href = '/paiement-echoue/index.html';
+            } else {
+                window.location.href = '/';
+            }
+        }, 2000);
     </script>
 </body>
 </html>
