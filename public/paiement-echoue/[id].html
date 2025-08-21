@@ -91,10 +91,58 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
       
+      .booking-details {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .detail-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .detail-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+      
+      .detail-label {
+        font-weight: 600;
+        opacity: 0.9;
+      }
+      
+      .detail-value {
+        font-weight: 700;
+        font-family: 'Courier New', monospace;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 8px;
+        border-radius: 6px;
+        min-width: 80px;
+        text-align: center;
+      }
+      
+      .detail-value.failed {
+        background: rgba(244, 67, 54, 0.3);
+        color: #F44336;
+      }
+      
       .footer {
         margin-top: 30px;
         opacity: 0.7;
         font-size: 0.9rem;
+      }
+      
+      .contact-info {
+        margin-top: 10px;
+        font-weight: 600;
+        color: #FFD700;
       }
       
       @keyframes shake {
@@ -133,12 +181,28 @@
         <p>secondes</p>
       </div>
       
+      <div class="booking-details">
+        <div class="detail-item">
+          <span class="detail-label">ID de réservation :</span>
+          <span class="detail-value">{{id}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Statut :</span>
+          <span class="detail-value failed">❌ Échoué</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Date :</span>
+          <span class="detail-value">{{date}}</span>
+        </div>
+      </div>
+
       <a href="myapp://payment-success?status=failed&id={{id}}" class="app-button">
         📱 Retourner à l'application
       </a>
       
       <div class="footer">
         <p>Si la redirection automatique ne fonctionne pas, cliquez sur le bouton ci-dessus</p>
+        <p class="contact-info">Besoin d'aide ? Contactez le support KKC</p>
       </div>
     </div>
     
