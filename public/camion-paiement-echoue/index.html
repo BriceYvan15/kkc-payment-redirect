@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement Camion Échoué - KKC Réservation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 40px;
+            color: white;
+        }
+        
+        .truck-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .booking-info {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .info-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            color: #1f2937;
+            font-weight: 600;
+        }
+        
+        .help-section {
+            background: #fef3c7;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .help-section h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .help-section ul {
+            color: #92400e;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .app-button {
+            background: #3b82f6;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .app-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .secondary-button {
+            background: transparent;
+            color: #6b7280;
+            border: 2px solid #d1d5db;
+        }
+        
+        .secondary-button:hover {
+            background: #f9fafb;
+            color: #374151;
+        }
+        
+        .retry-button {
+            background: #10b981;
+        }
+        
+        .retry-button:hover {
+            background: #059669;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .app-button {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">✕</div>
+        <div class="truck-icon">🚛</div>
+        
+        <h1>Paiement Camion Échoué ❌</h1>
+        <p class="subtitle">
+            Le paiement n'a pas pu être traité. Votre réservation est en attente de confirmation. 
+            Ne vous inquiétez pas, vous pouvez réessayer le paiement.
+        </p>
+        
+        <div class="booking-info">
+            <div class="info-row">
+                <span class="info-label">Référence :</span>
+                <span class="info-value" id="bookingId">Chargement...</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Date :</span>
+                <span class="info-value" id="currentDate">Chargement...</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Statut :</span>
+                <span class="info-value" style="color: #ef4444;">Échec</span>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <h3>🔧 Solutions possibles :</h3>
+            <ul>
+                <li>Vérifiez vos informations de paiement</li>
+                <li>Assurez-vous d'avoir suffisamment de fonds</li>
+                <li>Essayez un autre moyen de paiement</li>
+                <li>Contactez votre banque si nécessaire</li>
+            </ul>
+        </div>
+        
+        <a href="#" class="app-button retry-button" id="retryButton">
+            🔄 Réessayer le paiement
+        </a>
+        
+        <a href="#" class="app-button" id="openAppButton">
+            📱 Ouvrir l'application
+        </a>
+        
+        <button class="app-button secondary-button" onclick="window.close()">
+            Fermer cette page
+        </button>
+        
+        <div class="footer">
+            <p>Besoin d'aide ? Contactez notre support 📞</p>
+            <p>KKC Réservation - Transport de marchandises</p>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour extraire l'ID de réservation de l'URL
+        function getBookingIdFromUrl() {
+            // Essayer d'extraire depuis le pathname
+            const pathSegments = window.location.pathname.split('/');
+            let bookingId = pathSegments[pathSegments.length - 1];
+            
+            // Si pas d'ID dans le pathname, essayer les paramètres de requête
+            if (!bookingId || bookingId === 'index.html' || bookingId === 'camion-paiement-echoue') {
+                const urlParams = new URLSearchParams(window.location.search);
+                bookingId = urlParams.get('id') || urlParams.get('booking_id');
+            }
+            
+            // Si toujours pas d'ID, essayer de l'extraire de l'URL complète
+            if (!bookingId) {
+                const fullUrl = window.location.href;
+                const match = fullUrl.match(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i);
+                if (match) {
+                    bookingId = match[0];
+                }
+            }
+            
+            // Nettoyer l'ID
+            if (bookingId) {
+                bookingId = bookingId.replace(/[^a-zA-Z0-9-]/g, '');
+            }
+            
+            return bookingId;
+        }
+        
+        // Fonction pour obtenir la date actuelle
+        function getCurrentDate() {
+            const now = new Date();
+            return now.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        // Fonction pour réessayer le paiement
+        function retryPayment() {
+            const bookingId = getBookingIdFromUrl();
+            if (bookingId) {
+                // Rediriger vers l'application pour réessayer
+                const deepLink = `kkc-reservation://truck-booking?retry=true&bookingId=${bookingId}`;
+                window.location.href = deepLink;
+                
+                // Fallback
+                setTimeout(() => {
+                    window.location.href = `https://kkc-payment-redirect.onrender.com/truck-payment-return?paymentStatus=failed&bookingId=${bookingId}`;
+                }, 1000);
+            } else {
+                // Rediriger vers la page de réservation
+                window.location.href = 'kkc-reservation://truck-booking';
+            }
+        }
+        
+        // Fonction pour ouvrir l'application
+        function openApp() {
+            const bookingId = getBookingIdFromUrl();
+            if (bookingId) {
+                // Essayer d'ouvrir l'application avec deep link
+                const deepLink = `kkc-reservation://truck-payment-return?paymentStatus=failed&bookingId=${bookingId}`;
+                
+                // Ouvrir le deep link
+                window.location.href = deepLink;
+                
+                // Fallback : rediriger vers la page de retour de l'app
+                setTimeout(() => {
+                    window.location.href = `https://kkc-payment-redirect.onrender.com/truck-payment-return?paymentStatus=failed&bookingId=${bookingId}`;
+                }, 1000);
+            } else {
+                // Rediriger vers l'accueil de l'app
+                window.location.href = 'kkc-reservation://';
+            }
+        }
+        
+        // Initialisation de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingId = getBookingIdFromUrl();
+            const currentDate = getCurrentDate();
+            
+            // Afficher les informations
+            document.getElementById('bookingId').textContent = bookingId || 'N/A';
+            document.getElementById('currentDate').textContent = currentDate;
+            
+            // Configurer les boutons
+            document.getElementById('retryButton').addEventListener('click', retryPayment);
+            document.getElementById('openAppButton').addEventListener('click', openApp);
+            
+            // Logs pour debug
+            console.log('🚛 Page d\'échec camion chargée');
+            console.log('📋 ID de réservation:', bookingId);
+            console.log('📅 Date actuelle:', currentDate);
+        });
+    </script>
+</body>
+</html>
