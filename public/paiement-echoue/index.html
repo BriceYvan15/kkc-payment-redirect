@@ -257,25 +257,14 @@
         document.getElementById('bookingId').textContent = cleanId;
         document.getElementById('bookingDate').textContent = currentDate;
         
-        // Détecter le type de réservation depuis l'URL referrer ou les paramètres
-        const referrer = document.referrer || '';
-        const urlParams = new URLSearchParams(window.location.search);
-        const bookingType = urlParams.get('type') || (referrer.includes('truck') || referrer.includes('camion') ? 'truck' : 'bus');
-        
-        // Mettre à jour le lien du bouton selon le type
+        // Mettre à jour le lien du bouton avec l'ID nettoyé
         const appButton = document.getElementById('appButton');
-        if (bookingType === 'truck') {
-          appButton.href = `myapp://truck-payment-return?paymentStatus=failed&bookingId=${cleanId}`;
-        } else {
-          appButton.href = `myapp://payment-success?status=failed&id=${cleanId}`;
-        }
+        appButton.href = `myapp://payment-success?status=failed&id=${cleanId}`;
         
         console.log('📋 Informations de réservation mises à jour:', { 
           originalId: bookingId, 
           cleanId: cleanId, 
-          currentDate,
-          bookingType: bookingType,
-          referrer: referrer
+          currentDate 
         });
       }
       
@@ -292,20 +281,7 @@
           // Tentative de redirection vers l'app avec l'ID nettoyé
           const bookingId = getBookingIdFromUrl();
           const cleanId = bookingId.replace(/\.html$/, '').replace(/[^a-zA-Z0-9\-]/g, '');
-          // Détecter le type de réservation
-          const referrer = document.referrer || '';
-          const urlParams = new URLSearchParams(window.location.search);
-          const bookingType = urlParams.get('type') || (referrer.includes('truck') || referrer.includes('camion') ? 'truck' : 'bus');
-          
-          console.log('🔍 Détection type redirection automatique:', { bookingType, referrer, urlParams: urlParams.toString() });
-          
-          if (bookingType === 'truck') {
-            console.log('🚛 Redirection vers truck-payment-return');
-            window.location.href = `myapp://truck-payment-return?paymentStatus=failed&bookingId=${cleanId}`;
-          } else {
-            console.log('🚌 Redirection vers payment-success');
-            window.location.href = `myapp://payment-success?status=failed&id=${cleanId}`;
-          }
+          window.location.href = `myapp://payment-success?status=failed&id=${cleanId}`;
         }
       }, 1000);
       
