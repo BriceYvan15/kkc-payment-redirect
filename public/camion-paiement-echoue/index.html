@@ -273,7 +273,7 @@
             const bookingId = getBookingIdFromUrl();
             if (bookingId) {
                 // Rediriger vers l'application pour réessayer
-                const deepLink = `kkc-reservation://truck-booking?retry=true&bookingId=${bookingId}`;
+                const deepLink = `myapp://truck-booking?retry=true&bookingId=${bookingId}`;
                 window.location.href = deepLink;
                 
                 // Fallback
@@ -282,7 +282,7 @@
                 }, 1000);
             } else {
                 // Rediriger vers la page de réservation
-                window.location.href = 'kkc-reservation://truck-booking';
+                window.location.href = 'myapp://truck-booking';
             }
         }
         
@@ -291,7 +291,7 @@
             const bookingId = getBookingIdFromUrl();
             if (bookingId) {
                 // Essayer d'ouvrir l'application avec deep link
-                const deepLink = `kkc-reservation://truck-payment-return?paymentStatus=failed&bookingId=${bookingId}`;
+                const deepLink = `myapp://truck-payment-return?paymentStatus=failed&bookingId=${bookingId}`;
                 
                 // Ouvrir le deep link
                 window.location.href = deepLink;
@@ -302,7 +302,7 @@
                 }, 1000);
             } else {
                 // Rediriger vers l'accueil de l'app
-                window.location.href = 'kkc-reservation://';
+                window.location.href = 'myapp://';
             }
         }
         
@@ -327,3 +327,4 @@
     </script>
 </body>
 </html>
+

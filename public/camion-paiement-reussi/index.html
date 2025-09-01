@@ -261,7 +261,7 @@
             const bookingId = getBookingIdFromUrl();
             if (bookingId) {
                 // Essayer d'ouvrir l'application avec deep link
-                const deepLink = `kkc-reservation://truck-payment-return?paymentStatus=success&bookingId=${bookingId}`;
+                const deepLink = `myapp://truck-payment-return?paymentStatus=success&bookingId=${bookingId}`;
                 
                 // Ouvrir le deep link
                 window.location.href = deepLink;
@@ -272,7 +272,7 @@
                 }, 1000);
             } else {
                 // Rediriger vers l'accueil de l'app
-                window.location.href = 'kkc-reservation://';
+                window.location.href = 'myapp://';
             }
         }
         
@@ -296,3 +296,4 @@
     </script>
 </body>
 </html>
+
