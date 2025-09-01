@@ -13,15 +13,30 @@
             // Détecter le type de route
             if (path.includes('/paiement-reussi/')) {
                 const id = path.split('/paiement-reussi/')[1];
-                console.log('✅ Redirection vers paiement réussi, ID:', id);
+                console.log('✅ Redirection vers paiement réussi (BUS), ID:', id);
                 window.location.href = `/paiement-reussi/index.html?id=${id}`;
                 return;
             }
             
             if (path.includes('/paiement-echoue/')) {
                 const id = path.split('/paiement-echoue/')[1];
-                console.log('❌ Redirection vers paiement échoué, ID:', id);
+                console.log('❌ Redirection vers paiement échoué (BUS), ID:', id);
                 window.location.href = `/paiement-echoue/index.html?id=${id}`;
+                return;
+            }
+            
+            // Routes pour les camions
+            if (path.includes('/camion-paiement-reussi/')) {
+                const id = path.split('/camion-paiement-reussi/')[1];
+                console.log('🚛 Redirection vers paiement réussi (CAMION), ID:', id);
+                window.location.href = `/camion-paiement-reussi/index.html?id=${id}`;
+                return;
+            }
+            
+            if (path.includes('/camion-paiement-echoue/')) {
+                const id = path.split('/camion-paiement-echoue/')[1];
+                console.log('🚛 Redirection vers paiement échoué (CAMION), ID:', id);
+                window.location.href = `/camion-paiement-echoue/index.html?id=${id}`;
                 return;
             }
             
@@ -48,6 +63,10 @@
                 window.location.href = '/paiement-reussi/index.html';
             } else if (window.location.pathname.includes('/paiement-echoue/')) {
                 window.location.href = '/paiement-echoue/index.html';
+            } else if (window.location.pathname.includes('/camion-paiement-reussi/')) {
+                window.location.href = '/camion-paiement-reussi/index.html';
+            } else if (window.location.pathname.includes('/camion-paiement-echoue/')) {
+                window.location.href = '/camion-paiement-echoue/index.html';
             } else {
                 window.location.href = '/';
             }
